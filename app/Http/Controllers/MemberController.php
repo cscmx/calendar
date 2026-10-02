@@ -31,8 +31,16 @@ class MemberController extends Controller
         $member = new Member($validatedData);
         $user->members()->save($member);
 
-        return redirect()->route('dashboard');
+        return redirect()->route('members.index');
                
+    }
+
+    public function index(Request $request)
+    {
+        $user = $request->user();
+        $members = $user->members; //me da la colección completa de members
+
+        return view('members.list', compact('members'));
     }
 
 
