@@ -43,5 +43,29 @@ class MemberController extends Controller
         return view('members.list', compact('members'));
     }
 
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Member $member)
+    {
+        return view('members.edit',compact('member'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, Member $member)
+    {
+        $member->update($request->validate([
+            'name' => ['required','max:45', 'regex:/^[-\'\p{L}\p{M} ]+$/u'],
+            'date_of_birth' => ['nullable','date','required_if:category,family_member'],
+            'category' => ['required', Rule::in(['personal','family_member','pet','home'])],
+            'color' => ['required', 'regex:/^#([a-f0-9]{6})$/i']
+            ]));
+
+        return redirect()
+                ->route('members.index');
+    }
+    
 
 }
