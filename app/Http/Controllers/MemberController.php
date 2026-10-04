@@ -77,4 +77,16 @@ class MemberController extends Controller
     {
         return view('members.show', compact('member'));
     }
+
+    /**
+     *  Remove the specified resource from storage.
+    */
+    public function destroy(Member $member)
+    {
+        $member->delete();
+
+        return redirect()
+                ->route('members.index');
+
+    }
 }

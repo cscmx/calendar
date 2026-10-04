@@ -49,7 +49,15 @@
         </div>
 
     <x-primary-button>{{ __('Update') }}</x-primary-button>
+    <a href="{{ route('members.show', $member) }}">{{ __('Cancel') }}</a>
+    <x-danger-button form="delete-button">{{ __('Delete') }}</x-danger-button>
 
+</form>
+
+
+<form method="POST" action="{{ route('members.destroy', $member) }}" class="hidden" id="delete-button">
+    @csrf 
+    @method('DELETE')
 </form>
 
 </x-app-layout>

@@ -19,6 +19,16 @@
                 <p>{{ $categories[$member->category]}}</p>
                 <span class="inline-block w-6 h-6 rounded-full" style="background-color: {{ $member->color }}"></span>
         </div>
-            
+
+        <x-danger-button form="delete-button">{{ __('Delete') }}</x-danger-button>
+        <a href="{{ route('members.index') }}">{{ __('Back to index') }}</a> 
+
+
+        <form method="POST" action="{{ route('members.destroy', $member) }}" class="hidden" id="delete-button">
+            @csrf 
+            @method('DELETE')
+        </form>
  
+
+
 </x-app-layout>
