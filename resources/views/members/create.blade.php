@@ -47,6 +47,8 @@
         
         <x-primary-button>{{ __('Save') }}</x-primary-button>
 
+        <a href="{{ route('members.index') }}">{{ __('Cancel') }}</a>
+
     </form>
 
 </x-app-layout>
