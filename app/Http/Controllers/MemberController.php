@@ -35,6 +35,9 @@ class MemberController extends Controller
                
     }
 
+    /**
+     * View all members.
+     */
     public function index(Request $request)
     {
         $user = $request->user();
@@ -67,5 +70,11 @@ class MemberController extends Controller
                 ->route('members.index');
     }
     
-
+    /**
+     * View only one member.
+     */
+    public function show(Member $member)
+    {
+        return view('members.show', compact('member'));
+    }
 }
