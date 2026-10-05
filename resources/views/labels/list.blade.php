@@ -5,20 +5,21 @@
         </h2>
 
     <a class="font-semibold text-xs" href="{{ route('labels.create') }}">Add label</a>
-
+    
     </x-slot>
 
          <div class="flex flex-wrap gap-4">
         @forelse ($labels as $label)
-
+                <a href="{{ route('labels.edit', $label) }}">
                 <div class="mb-5 p-4 border rounded-lg">
                         <p class="font-semibold">{{ $label->name}}</p>
                 </div>
-
+                </a>
         @empty
             <p>No label registered yet</p>
         @endforelse
         </div>
+        
 
         <a href="{{ route('dashboard') }}">Back to Dashboard</a>
 </x-app-layout>
