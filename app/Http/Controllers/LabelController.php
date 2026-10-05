@@ -22,7 +22,14 @@ class LabelController extends Controller
         $label = new Label($validatedData);
         $label->save();
 
-        return redirect()->route('dashboard');
+        return redirect()->route('labels.index');
                
+    }
+
+    public function index()
+    {
+        $labels = Label::all(); //me da la colección completa de labels
+
+        return view('labels.list', compact('labels'));
     }
 }
