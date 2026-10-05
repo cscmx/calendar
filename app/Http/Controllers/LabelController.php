@@ -52,4 +52,13 @@ class LabelController extends Controller
                 ->route('labels.index');
     }
 
+    public function destroy(Label $label)
+    {
+        $label->delete();
+
+        return redirect()
+                ->route('labels.index');
+
+    }
+
 }

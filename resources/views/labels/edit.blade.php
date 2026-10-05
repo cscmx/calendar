@@ -19,11 +19,14 @@
 
     <x-primary-button>{{ __('Update') }}</x-primary-button>
     <a href="{{ route('labels.index') }}">{{ __('Cancel') }}</a>
-
+    <x-danger-button form="delete-button">{{ __('Delete') }}</x-danger-button>
 
 </form>
 
-
+<form method="POST" action="{{ route('labels.destroy', $label) }}" class="hidden" id="delete-button">
+    @csrf 
+    @method('DELETE')
+</form>
 
 
 </x-app-layout>
