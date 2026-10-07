@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Models\Member;
+use Illuminate\View\View;
 
 class MemberController extends Controller
 {
