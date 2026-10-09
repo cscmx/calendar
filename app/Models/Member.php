@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
-
+use App\Models\Appointments;
 
 #[Fillable(['name', 'date_of_birth', 'category', 'color'])]
 
@@ -16,8 +16,8 @@ class Member extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function appointment()
+    public function appointments()
     {
-        return $this->hasMany(Appointment::class);
+        return $this->belongsToMany(Appointment::class);
     }
 }

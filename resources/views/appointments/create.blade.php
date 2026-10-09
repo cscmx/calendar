@@ -9,9 +9,9 @@
     @csrf
 
         <div>
-            <x-input-label for="name" :value="__('name')" />
-            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error class="mt-2" :messages="$errors->get('name')" />
+            <x-input-label for="title" :value="__('title')" />
+            <x-text-input id="title" name="title" type="text" class="mt-1 block w-full" :value="old('title')" required autofocus autocomplete="title" />
+            <x-input-error class="mt-2" :messages="$errors->get('title')" />
         </div>
 
         <div>
@@ -33,7 +33,23 @@
                 <span class="ms-2 text-sm text-gray-600">{{ __('Highlight this appointment') }}</span>
             </label>
         </div>
-        
+
+         <x-select id="label_id" name="label_id" class="mt-1 block w-full" :selected="old('label_id')" :options="$labels" required/>
+         <x-input-error class="mt-2" :messages="$errors->get('label_id')" />
+
+
+        <label for="members"> Members </label>
+        <select name="members[]" id="members" multiple class="mt-1 block w-full">
+            @foreach ($members as $member)
+            <option value="{{ $member->id }}"
+                @selected(in_array($member->id, old('members', [])))>{{ $member->name }}
+            </option>
+            @endforeach
+        </select>
+
+        @error('members')
+            <p class="text-red-500 text-sm">{{ $message}}</p>
+        @enderror
 
         <x-primary-button>{{ __('Save') }}</x-primary-button>
 
