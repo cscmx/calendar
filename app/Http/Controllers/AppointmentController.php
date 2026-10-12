@@ -40,4 +40,11 @@ class AppointmentController extends Controller
         return redirect()->route('dashboard');
                
     }
+
+    public function index()
+    {
+        $appointments = Appointment::all();
+
+        return view('appointments.list', compact('appointments'));
+    }
 }

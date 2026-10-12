@@ -53,7 +53,7 @@
 
         <x-primary-button>{{ __('Save') }}</x-primary-button>
 
-        <a href="{{ route('dashboard') }}">{{ __('Cancel') }}</a>
+        <a href="{{ route('appointments.index') }}">{{ __('Cancel') }}</a>
 
     </form>
 
