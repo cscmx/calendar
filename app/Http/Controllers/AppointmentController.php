@@ -14,8 +14,8 @@ class AppointmentController extends Controller
     public function create()
     {
         $members = auth()->user()->members;
-        $label_id = Label::pluck('name','id');
-        return view('appointments.create', compact('label_id'), compact('members'));
+        $labels= Label::pluck('name','id');
+        return view('appointments.create', compact('labels'), compact('members'));
     }
 
     //store an appointment 
