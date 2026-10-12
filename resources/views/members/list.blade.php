@@ -28,4 +28,5 @@
         @endforelse
         </div>
 
+        <a href="{{ route('dashboard') }}">{{ __('Back to dashboard') }}</a> 
 </x-app-layout>

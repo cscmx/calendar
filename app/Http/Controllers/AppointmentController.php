@@ -61,7 +61,7 @@ class AppointmentController extends Controller
     {
         $validatedData = $request->validate([
             'title' => ['required','max:45', 'regex:/^[-\'\p{L}\p{M} ]+$/u'], 
-            'description' => ['required','max:255', 'regex:/^[-\'\p{L}\p{M}0-9 ]+$/u'], //asegurar este regex - algo más?
+            'description' => ['required','max:255', 'regex:/^[-\':,\p{L}\p{M}0-9 ]+$/u'], //asegurar este regex - algo más?
             'start_date_time' => ['required'],
             'members' => ['required', 'array'],
             'members.*' => ['exists:members,id'],
@@ -82,5 +82,14 @@ class AppointmentController extends Controller
     public function show(Appointment $appointment)
     {
         return view('appointments.show', compact('appointment'));
+    }
+
+    public function destroy(Appointment $appointment)
+    {   
+        $appointment->delete();
+        
+        return redirect()
+                ->route('appointments.index');
+
     }
 }

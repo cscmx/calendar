@@ -56,7 +56,13 @@
         <x-primary-button>{{ __('Save') }}</x-primary-button>
 
         <a href="{{ route('appointments.index') }}">{{ __('Cancel') }}</a>
+        <x-danger-button form="delete-button" onclick="return confirm('Are you sure you want to delete this appointment?')">{{ __('Delete') }}</x-danger-button>
 
+    </form>
+
+    <form method="POST" action="{{ route('appointments.destroy', $appointment) }}" class="hidden" id="delete-button">
+        @csrf 
+        @method('DELETE')
     </form>
 
 </x-app-layout>
