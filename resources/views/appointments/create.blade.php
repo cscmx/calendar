@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
 
-    <form method="post" action="{{ route('appointments.store') }}" class="mt-6 space-y-6">
+    <form method="POST" action="{{ route('appointments.store') }}" class="mt-6 space-y-6">
     @csrf
 
         <div>
@@ -23,7 +23,7 @@
         
         <div>
             <x-input-label for="start_date_time" :value="__('Start date/time')" />
-            <x-text-input id="start_date_time" name="start_date_time" type="date" class="mt-1 block w-full" :value="old('start_date_time')" autocomplete="bday" />
+            <x-text-input id="start_date_time" name="start_date_time" type="datetime-local" class="mt-1 block w-full" :value="old('start_date_time')" autocomplete="bday" />
             <x-input-error class="mt-2" :messages="$errors->get('start_date_time')" />
         </div>
 
