@@ -20,7 +20,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('/members', MemberController::class)->only('create', 'store', 'index', 'edit', 'update', 'show', 'destroy');
     Route::resource('/labels', LabelController::class)->only('create', 'store', 'index', 'edit', 'update', 'destroy');
-    Route::resource('/appointments', AppointmentController::class)->only('create', 'store', 'index', 'edit', 'update', 'show');
+    Route::resource('/appointments', AppointmentController::class)->only('create', 'store', 'index', 'edit', 'update', 'show', 'destroy');
 });
 
 require __DIR__.'/auth.php';

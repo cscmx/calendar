@@ -22,4 +22,6 @@
         
 
         <a href="{{ route('dashboard') }}"> Back to Dashboard </a>
+
+
 </x-app-layout>

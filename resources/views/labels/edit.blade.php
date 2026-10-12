@@ -19,7 +19,8 @@
 
     <x-primary-button>{{ __('Update') }}</x-primary-button>
     <a href="{{ route('labels.index') }}">{{ __('Cancel') }}</a>
-    <x-danger-button form="delete-button">{{ __('Delete') }}</x-danger-button>
+    <x-danger-button form="delete-button" onclick="return confirm('Are you sure you want to delete this appointment?')">{{ __('Delete') }}</x-danger-button>
+
 
 </form>
 

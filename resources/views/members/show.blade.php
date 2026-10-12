@@ -20,9 +20,8 @@
                 <span class="inline-block w-6 h-6 rounded-full" style="background-color: {{ $member->color }}"></span>
         </div>
 
-        <x-danger-button form="delete-button">{{ __('Delete') }}</x-danger-button>
-        <a href="{{ route('members.index') }}">{{ __('Back to index') }}</a> 
-
+        <a href="{{ route('members.index') }}">{{ __('Back to index') }}</a>
+        <x-danger-button form="delete-button" onclick="return confirm('Are you sure you want to delete this member?')">{{ __('Delete') }}</x-danger-button>
 
         <form method="POST" action="{{ route('members.destroy', $member) }}" class="hidden" id="delete-button">
             @csrf 
