@@ -78,4 +78,9 @@ class AppointmentController extends Controller
             ->route('appointments.index');
 
     }
+
+    public function show(Appointment $appointment)
+    {
+        return view('appointments.show', compact('appointment'));
+    }
 }

@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Appointments list') }}
+            {{ __('Appointment details') }}
         </h2>
 
     <a class="font-semibold text-xs" href="{{ route('appointments.create') }}"> Add appointment </a>
@@ -10,7 +10,7 @@
         
          <div class="flex flex-wrap gap-4">
         @forelse ($appointments as $appointment)
-            <a href="{{ route('appointments.edit', $appointment) }}"> 
+            <a href="{{ route('appointments.show', $appointment) }}"> 
                 <div class="mb-5 p-4 border rounded-lg">
                         <p class="font-semibold">{{ $appointment->title}}</p>
                 </div>

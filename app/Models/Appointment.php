@@ -15,6 +15,10 @@ class Appointment extends Model
         return $this->belongsToMany(Member::class);
     }
 
+    public function label()
+    {
+        return $this->belongsTo(Label::class);
+    }
 
 }
 
