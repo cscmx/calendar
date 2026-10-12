@@ -33,12 +33,12 @@ class AppointmentController extends Controller
         ]);
 
         $validatedData['is_highlighted'] = $request->boolean('is_highlighted');
-         
+        $members = $validatedData['members'];
         $appointment = new Appointment($validatedData);
         $appointment->save();
         $appointment->members()->attach($members);
 
-        return redirect()->route('dashboard');
+        return redirect()->route('appointments.index');
                
     }
 
