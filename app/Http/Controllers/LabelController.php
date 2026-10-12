@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Label;
 use Illuminate\Validation\Rule;
+use Illuminate\View\View;
 
 class LabelController extends Controller
 {
