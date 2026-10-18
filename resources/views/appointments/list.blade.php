@@ -16,6 +16,14 @@
             @endforeach
         </select>
         <x-primary-button>{{ __('Filter') }}</x-primary-button>
+
+        <select name="label">
+            <option value=""> All labels </option>
+            @foreach ($labels as $label)
+                <option value="{{ $label->id }}" @selected(request('label') == $label->id)>{{ $label->name}}</option>
+            @endforeach
+        </select>
+        <x-primary-button>{{ __('Filter') }}</x-primary-button>
     </form>
 
          <div class="flex flex-wrap gap-4">
