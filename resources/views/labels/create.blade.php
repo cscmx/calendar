@@ -5,21 +5,27 @@
         </h2>
     </x-slot>
 
-    <form method="post" action="{{ route('labels.store') }}" class="mt-6 space-y-6">
-            @csrf
+        <div class="py-8">
+            <div class="max-w-xl mx-auto sm:px-6 lg:px-8 space-y-6">
+                <div class="bg-white shadow-sm rounded-lg p-6">
+                    <form method="post" action="{{ route('labels.store') }}" class="mt-6 space-y-6">
+                        @csrf
 
-        <div>
-            <x-input-label for="name" :value="__('name')" />
-            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error class="mt-2" :messages="$errors->get('name')" />
+                        <div>
+                            <x-input-label for="name" :value="__('name')" />
+                            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name')" required autofocus autocomplete="name" />
+                            <x-input-error class="mt-2" :messages="$errors->get('name')" />
+                        </div>
+
+                        
+                        <x-primary-button>{{ __('Save') }}</x-primary-button>
+
+                        <a href="{{ route('labels.index') }}">{{ __('Cancel') }}</a>
+
+                    </form>
+                </div>
+            </div>
         </div>
-
-        
-        <x-primary-button>{{ __('Save') }}</x-primary-button>
-
-        <a href="{{ route('labels.index') }}">{{ __('Cancel') }}</a>
-
-    </form>
 
 </x-app-layout>
 

@@ -38,37 +38,40 @@
                         </a>
                     </nav>
 
-                    <div class="flex flex-col">
-                        <label for="label" class="mb-1 text-sm font-medium text-gray-700">
-                            Label
-                        </label>
-                        <select name="label" id="label"
-                                class="border-gray-300 rounded-md shadow-sm 
-                                       focus:border-indigo-500 focus:ring-indigo-500">
-                            <option value="">All labels</option>
-                            @foreach ($labels as $label)
-                                <option value="{{ $label->id }}" @selected(request('label') == $label->id)>
-                                    {{ $label->name }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
+                    {{--**************MIRAR SI TE CONSERVA ESTE CONTENEDOR******--}}
+                    <div class="flex flex-col sm:flex-row gap-4 w-full">
+                        <div class="flex flex-col">
+                            <label for="label" class="mb-1 text-sm font-medium text-gray-700">
+                                Label
+                            </label>
+                            <select name="label" id="label"
+                                    class="border-gray-300 rounded-md shadow-sm 
+                                        focus:border-indigo-500 focus:ring-indigo-500">
+                                <option value="">All labels</option>
+                                @foreach ($labels as $label)
+                                    <option value="{{ $label->id }}" @selected(request('label') == $label->id)>
+                                        {{ $label->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
 
-                    <div class="flex flex-col">
-                        <label for="member" class="mb-1 text-sm font-medium text-gray-700">
-                            Member
-                        </label>
-                        <select name="member" id="member"
-                                class="border-gray-300 rounded-md shadow-sm 
-                                       focus:border-indigo-500 focus:ring-indigo-500">
-                            <option value="">All members</option>
-                            @foreach ($members as $member)
-                                <option value="{{ $member->id }}" @selected(request('member') == $member->id)>
-                                    {{ $member->name }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
+                        <div class="flex flex-col">
+                            <label for="member" class="mb-1 text-sm font-medium text-gray-700">
+                                Member
+                            </label>
+                            <select name="member" id="member"
+                                    class="border-gray-300 rounded-md shadow-sm 
+                                        focus:border-indigo-500 focus:ring-indigo-500">
+                                <option value="">All members</option>
+                                @foreach ($members as $member)
+                                    <option value="{{ $member->id }}" @selected(request('member') == $member->id)>
+                                        {{ $member->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                </div>
 
                     <x-primary-button>{{ __('Filter') }}</x-primary-button>
 
