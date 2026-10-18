@@ -42,11 +42,20 @@ class AppointmentController extends Controller
                
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $appointments = Appointment::all();
+        $query = Appointment::query();
+        if($request->member)
+            {
+                $query->whereHas('members', function($q) use($request)
+                {
+                    $q->where('id', $request->member);
+                });
+            }
 
-        return view('appointments.list', compact('appointments'));
+        $appointments = $query->get();
+        $members = Member::all();
+        return view('appointments.list', compact('appointments','members'));
     }
 
     public function edit(Appointment $appointment)
