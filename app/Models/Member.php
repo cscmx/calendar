@@ -10,7 +10,10 @@ use App\Models\Appointments;
 
 class Member extends Model
 {
-    //return the member of the user
+    protected $casts = [
+        'date_of_birth' => 'datetime'
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
