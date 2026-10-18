@@ -7,7 +7,7 @@ use App\Models\Appointment;
 use Illuminate\View\View;
 use App\Models\Label;
 use App\Models\Member;
-
+use Carbon\Carbon;
 
 class AppointmentController extends Controller
 {
@@ -45,22 +45,33 @@ class AppointmentController extends Controller
     public function index(Request $request)
     {
         $query = Appointment::query();
-        if($request->member)
+        if ($request->member)
             {
                 $query->whereHas('members', function($q) use($request)
                 {
                     $q->where('id', $request->member);
                 });
             }
-        if($request->label)
+        if ($request->label)
             {
                 $query->where('label_id', $request->label);
+            }
+        if ($request->filter === 'today')
+            {
+                $query->whereDate('start_date_time', today());
+            }
+        elseif($request->filter === 'week')
+            {
+                $query->whereBetween('start_date_time', [
+                    now()->startOfWeek(),
+                    now()->endOfWeek()
+                ]);
             }
 
         $appointments = $query->get();
         $labels = Label::all();
         $members = Member::all();
-        return view('appointments.list', compact('appointments','members','labels'));
+        return view('appointments.list', compact('appointments', 'members', 'labels'));
     }
 
     public function edit(Appointment $appointment)

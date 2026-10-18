@@ -10,6 +10,10 @@ use App\Models\Member;
 
 class Appointment extends Model
 {
+    protected $casts = [
+        'start_date_time' => 'datetime'
+    ];
+
     public function members()
     {
         return $this->belongsToMany(Member::class);
