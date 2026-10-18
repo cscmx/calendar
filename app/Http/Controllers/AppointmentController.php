@@ -77,7 +77,7 @@ class AppointmentController extends Controller
     public function edit(Appointment $appointment)
     {
         $members = auth()->user()->members;
-        $labels = Label::pluck('name','id');
+        $labels = Label::all();
         return view('appointments.edit', compact('appointment','labels','members'));
 
     }

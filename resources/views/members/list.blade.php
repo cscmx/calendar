@@ -57,7 +57,6 @@
                         <tbody class="bg-white divide-y divide-gray-200">
                             @foreach ($members as $member)
                                 <tr class="hover:bg-gray-50">
-                                    {{-- Color --}}
                                     <td class="px-4 py-3">
                                         <span class="inline-block w-5 h-5 rounded-full border border-gray-200"
                                               style="background-color: {{ $member->color }}"></span>
