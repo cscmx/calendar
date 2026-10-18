@@ -52,10 +52,15 @@ class AppointmentController extends Controller
                     $q->where('id', $request->member);
                 });
             }
+        if($request->label)
+            {
+                $query->where('label_id', $request->label);
+            }
 
         $appointments = $query->get();
+        $labels = Label::all();
         $members = Member::all();
-        return view('appointments.list', compact('appointments','members'));
+        return view('appointments.list', compact('appointments','members','labels'));
     }
 
     public function edit(Appointment $appointment)
