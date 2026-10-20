@@ -1,33 +1,98 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Appointment details') }}
-        </h2>
+        <div class="flex justify-between items-center">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                {{ __('Appointment details') }}
+            </h2>
 
-        <a class="font-semibold text-xs" href="{{ route('appointments.edit', $appointment) }}">Edit appointment</a>
-
-    
+            <a href="{{ route('appointments.edit', $appointment) }}"
+               class="inline-flex items-center px-4 py-2 bg-lime-300 border border-transparent
+                      rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest
+                      hover:bg-lime-200">
+                Edit appointment
+            </a>
+        </div>
     </x-slot>
-        
-        <div class="flex flex-wrap gap-4 box-content size-128 border-6 p-6 bg-neutral-primary-soft block max-w-sm p-6 border border-default rounded-base shadow-s hover:bg-neutral-secondary-medium">
-                <strong class="text-2xl font-bold">{{ $appointment->title}}</strong>
-                <P>Description: {{ $appointment->description}}</P>
-                <p>Label: {{ $appointment->label->name }}</p>
-                <p>Start at: {{ $appointment->start_date_time}}</p>
-                <p>Member/s: {{ $appointment->members->pluck('name')->join(', ') }}</p>
-                <p>Highlighted: {{ $appointment->is_highlighted ? 'Yes' : 'No' }}</p>
-                <p>Status: {{ $appointment->status}}</p>
+
+    <div class="py-8">
+        <div class="max-w-2xl mx-auto sm:px-6 lg:px-8 space-y-6">
+
+            <div class="bg-white shadow-sm rounded-lg p-6">
+                <div class="flex items-center gap-4 mb-4">
+                    <h3 class="text-2xl font-semibold text-gray-800">{{ $appointment->title }}</h3>
+                </div>
+                
+                <div class="space-y-4">
+                    
+                    @if ($appointment->description)
+                        <div>
+                            <p class="text-sm text-gray-500">Description</p>
+                            <p class="text-gray-800">{{ $appointment->description }}</p>
+                        </div>
+                    @endif
+
+                    <div>
+                        <p class="text-sm text-gray-500">Start date</p>
+                        <p class="text-gray-800">
+                            {{ $appointment->start_date_time ? $appointment->start_date_time->format('F jS, Y \a\t H:i') : '—' }}
+                        </p>
+                    </div>
+
+                    <div>
+                        <p class="text-sm text-gray-500">Label</p>
+                        <p class="text-gray-800">
+                            {{ $appointment->label ? $appointment->label->name : '—' }}
+                        </p>
+                    </div>
+
+                    <div>
+                        <p class="text-sm text-gray-500">Members</p>
+                        <p class="text-gray-800">
+                            {{ $appointment->members->isNotEmpty() ? $appointment->members->pluck('name')->join(', ') : '—' }}
+                        </p>
+                    </div>
+
+                    <div>
+                        <p class="text-sm text-gray-500">Status</p>
+                        <p class="text-gray-800">{{ $appointment->status }}</p>
+                    </div>
+
+                    @if ($appointment->is_highlighted)
+                        <div>
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                                ★ Highlighted
+                            </span>
+                        </div>
+                    @endif
+
+                </div>
+                </div>
+            </div>
+
+            <div class="px-6">
+                <a href="{{ route('appointments.index') }}"
+                   class="text-sm text-gray-600 hover:text-gray-900 underline">
+                    ← Back to appointments
+                </a>
+            </div>
 
         </div>
-
-        <a href="{{ route('appointments.index') }}">{{ __('Back to index') }}</a> 
-
-        <x-danger-button form="delete-button" onclick="return confirm('Are you sure you want to delete this appointment?')">{{ __('Delete') }}</x-danger-button>
-
-
-        <form method="POST" action="{{ route('appointments.destroy', $appointment) }}" class="hidden" id="delete-button">
-            @csrf 
-            @method('DELETE')
-        </form>
-
+    </div>
 </x-app-layout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
