@@ -1,18 +1,16 @@
 <nav x-data="{ open: false }" class="bg-white border-b bg-stone-50">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <!-- Usamos flex en móvil y grid de 3 columnas en escritorio (lg) -->
         <div class="flex justify-between items-center h-20 lg:grid lg:grid-cols-3">
             
-            <!-- 1. Logo -->
+            <!-- Logo -->
             <div class="shrink-0 flex items-center justify-start">
                 <a href="{{ route('dashboard') }}">
                     <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
                 </a>
             </div>
 
-            <!-- 2. Navigation Links (Centro geométrico en escritorio) -->
+            <!-- Navigation Links -->
             <div class="hidden lg:flex justify-center">
                 <nav class="bg-stone-200 shadow-sm rounded-xl border border-stone-300 p-2 flex justify-center items-center">
                     <div class="flex justify-center items-center gap-2 whitespace-nowrap">
@@ -32,16 +30,13 @@
                 </nav>
             </div>
 
-            <!-- 3. Settings Dropdown y Hamburguesa (Alineados a la derecha) -->
+            <!-- Settings Dropdown -->
             <div class="flex items-center justify-end gap-4">
-                
-                <!-- Settings Dropdown (Solo visible en lg) -->
                 <div class="hidden lg:flex lg:items-center relative">
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
                             <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-stone-200 hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
-                                <!-- Truncamos el nombre si es muy largo -->
-                                <div class="max-w-[140px] truncate">{{ Auth::user()->name }}</div>
+                                <div class="max-w-xs truncate">{{ Auth::user()->name }}</div>
 
                                 <div class="ms-1 shrink-0">
                                     <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -70,7 +65,7 @@
                     </x-dropdown>
                 </div>
 
-                <!-- Hamburger (Móvil y Tablet) -->
+                <!-- Hamburger -->
                 <div class="-me-2 flex items-center lg:hidden">
                     <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
                         <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
@@ -80,7 +75,6 @@
                     </button>
                 </div>
             </div>
-
         </div>
     </div>
 
