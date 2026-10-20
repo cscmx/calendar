@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Label;
 use Illuminate\Validation\Rule;
 use Illuminate\View\View;
+use App\Models\Appointment;
 
 class LabelController extends Controller
 {
@@ -55,10 +56,14 @@ class LabelController extends Controller
 
     public function destroy(Label $label)
     {
-        $label->delete();
+        $count = $label->appointments()->count();
+        if($count > 0)
+            {
+                return redirect()->route('labels.index')->with('error',"This label is associated to {$count} appointments and can't be deleted");
+            }
 
-        return redirect()
-                ->route('labels.index');
+        $label->delete();
+        return redirect()->route('labels.index')->with('success', "Label deleted");
 
     }
 

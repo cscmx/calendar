@@ -54,10 +54,9 @@
 
                     <div class="flex items-center gap-4 mt-6">
                         <x-primary-button>{{ __('Update') }}</x-primary-button>
-                        <a href="{{ route('members.show', $member) }}"
-                           class="text-sm text-gray-600 hover:text-gray-900 underline">
-                            Cancel
-                        </a>
+                        <a href="{{ route('members.index') }}" class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest hover:bg-gray-50"> Cancel </a>
+                        <x-danger-button form="delete-button" onclick="return confirm('Are you sure you want to delete this member?')">{{ __('Delete') }}</x-danger-button>
+                    </div>
                     </div>
                     
                 </form>

@@ -85,10 +85,15 @@ class MemberController extends Controller
     */
     public function destroy(Member $member)
     {
-        $member->delete();
+        $count = $member->appointments()->count();
+        
+        if($count > 0)
+            {
+                return redirect()->route('members.index')->with('error',"This member is associated to {$count} appointments and can't be deleted");
+            }
 
-        return redirect()
-                ->route('members.index');
+        $member->delete();
+        return redirect()->route('members.index')->with('success', "Member deleted");
 
     }
 }

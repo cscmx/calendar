@@ -11,7 +11,6 @@ use Carbon\Carbon;
 
 class AppointmentController extends Controller
 {
-    //create appointment
     public function create()
     {
         $members = auth()->user()->members;
@@ -19,7 +18,6 @@ class AppointmentController extends Controller
         return view('appointments.create', compact('labels','members'));
     }
 
-    //store an appointment 
     public function store(Request $request)
     {
         $validatedData = $request->validate([
