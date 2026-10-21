@@ -4,7 +4,7 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __('Edit member') }}
             </h2>
-            <a href="{{ route('members.show', $member) }}"
+            <a href="{{ route('members.index', $member) }}"
                class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest hover:bg-gray-50">
                 Cancel
             </a>
