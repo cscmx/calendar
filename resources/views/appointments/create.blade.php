@@ -62,9 +62,10 @@
 
                 <div class="flex items-center gap-4 mt-6">
                     <x-primary-button>{{ __('Save') }}</x-primary-button>
-                    <a href="{{ route('appointments.index') }}" class="text-sm text-gray-600 hover:text-gray-900 underline">
-                        Cancel
-                    </a>
+                        <a href="{{ route('labels.index') }}" 
+                           class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest hover:bg-gray-50">
+                            Cancel
+                        </a>
                 </div>
 
                 </form>
