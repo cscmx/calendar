@@ -60,29 +60,29 @@
                                     </td>
 
                                     <td class="px-4 py-3">
-                                        <a href="{{ route('members.edit', $member) }}" class="font-medium text-gray-800 hover:text-indigo-600">
+                                        <a href="{{ route('members.edit', $member) }}" class="font-medium text-stone-800 hover:text-indigo-600">
                                             {{ $member->name }}
                                         </a>
                                     </td>
 
-                                    <td class="px-4 py-3 text-sm text-gray-600">
+                                    <td class="px-4 py-3 text-sm text-stone-600">
                                         {{ $member->date_of_birth ? $member->date_of_birth->format('d/m/Y') : '—' }}
                                     </td>
 
-                                    <td class="px-4 py-3 text-sm text-gray-600">
+                                    <td class="px-4 py-3 text-sm text-stone-600">
                                         {{ $categories[$member->category] }}
                                     </td>
 
                                     <td class="px-4 py-3 text-right">
                                         <div class="flex items-center justify-end gap-1">
-                                            <a href="{{ route('members.edit', $member) }}" class="inline-flex p-2 rounded-md text-gray-500 hover:bg-gray-100 hover:text-gray-700" title="Edit">
+                                            <a href="{{ route('members.edit', $member) }}" class="inline-flex p-2 rounded-md text-stone-500 hover:bg-stone-100 hover:text-stone-700" title="Edit">
                                                 <x-heroicon-o-pencil-square class="w-5 h-5" />
                                             </a>
 
                                             <form method="POST" action="{{ route('members.destroy', $member) }}" onsubmit="return confirm('Are you sure you want to delete this member?')">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="p-2 rounded-md text-gray-500 hover:bg-red-100 hover:text-red-600" title="Delete">
+                                                <button type="submit" class="p-2 rounded-md text-stone-500 hover:bg-red-100 hover:text-red-600" title="Delete">
                                                     <x-heroicon-o-trash class="w-5 h-5" />
                                                 </button>
                                             </form>
