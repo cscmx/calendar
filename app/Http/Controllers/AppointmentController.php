@@ -21,8 +21,8 @@ class AppointmentController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'title' => ['required','max:45', 'regex:/^[-\'\p{L}\p{M} ]+$/u'], 
-            'description' => ['required','max:255', 'regex:/^[-\'\p{L}\p{M}0-9 ]+$/u'], //asegurar este regex - algo más?
+            'title' => ['required','max:45', 'regex:/^[-\'\p{L}\p{M}(),.¡!¿? ]+$/u'], 
+            'description' => ['required', 'max:255', 'regex:/^[-\'\p{L}\p{M}0-9\s(),.¿?¡!=@_+:;]+$/u'],
             'start_date_time' => ['required'],
             'members' => ['required', 'array'],
             'members.*' => ['exists:members,id'],
