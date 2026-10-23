@@ -1,14 +1,14 @@
 <x-app-layout>
     <x-slot name="header">
         <div class="flex justify-between items-center">
-            <h2 class="font-semibold text-xl text-stone-700 leading-tight">
+            <div class="font-semibold text-xl text-stone-700 leading-tight">
                 <p>Hello,  {{ $user->name }}</p>
                 <p class="text-sm text-stone-500 ">{{ __('Here is your calendar in a blink') }}</p>
-            </h2>
+            </div>
             <a href="{{ route('appointments.create') }}"
                 class="items-center px-4 py-2 bg-lime-300 border border-transparent 
                         rounded-md font-semibold text-xs text-gray-600 uppercase tracking-widest 
-                        hover:bg-lime-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 
+                        hover:bg-lime-200 focus:outline-none focus:ring-2 focus:ring-lime-500 
                         focus:ring-offset-2 transition ease-in-out duration-150">
                 + New appointment
             </a>

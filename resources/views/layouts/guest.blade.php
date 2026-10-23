@@ -12,8 +12,8 @@
     <body class="font-sans text-stone-900 antialiased">
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-cover bg-center" style="background-image: url('{{ asset('images/fondo_login.png') }}')">
             <div>
-                <a class="logo" href="{{ url('/') }}">
-                    @include('profile.partials.morrow-mark', ['class' => 'logo-icon'])
+                <a href="{{ url('/') }}" class="flex items-center gap-2 font-mono text-lg text-stone-900">
+                    @include('profile.partials.morrow-mark', ['class' => 'w-7 h-7 stroke-stone-900 stroke-[6]'])
                     <span>Morrow*</span>
                 </a>
             </div>
