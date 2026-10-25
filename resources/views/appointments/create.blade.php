@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="font-semibold text-xl text-stone-800 leading-tight">
             {{ __('Create appointment') }}
         </h2>
     </x-slot>
@@ -21,7 +21,7 @@
 
                         <div>
                             <x-input-label for="description" :value="__('description')" />
-                            <textarea id="description" name="description" class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" rows="3" required>{{ old('description') }}</textarea>
+                            <textarea id="description" name="description" class="mt-1 block w-full border-stone-300 focus:border-lime-500 focus:ring-lime-500 rounded-md shadow-sm" rows="3" required>{{ old('description') }}</textarea>
                             <x-input-error class="mt-2" :messages="$errors->get('description')" />
                         </div>
                         
@@ -34,7 +34,7 @@
                         <div>
                             <label for="is_highlighted" class="inline-flex items-center">
                                 <input id="is_highlighted" name="is_highlighted" type="checkbox" value="1" {{ old('is_highlighted') ? 'checked' : '' }}>
-                                <span class="ms-2 text-sm text-gray-600">{{ __('Highlight this appointment') }}</span>
+                                <span class="ms-2 text-sm text-stone-600">{{ __('Highlight this appointment') }}</span>
                             </label>
                         </div>
 
@@ -63,7 +63,7 @@
                 <div class="flex items-center gap-4 mt-6">
                     <x-primary-button>{{ __('Save') }}</x-primary-button>
                         <a href="{{ route('labels.index') }}" 
-                           class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest hover:bg-gray-50">
+                           class="inline-flex items-center px-4 py-2 bg-white border border-stone-300 rounded-md font-semibold text-xs text-stone-700 uppercase tracking-widest hover:bg-stone-50">
                             Cancel
                         </a>
                 </div>

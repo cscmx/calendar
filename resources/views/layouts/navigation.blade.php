@@ -4,9 +4,10 @@
         <div class="flex justify-between items-center h-20 lg:grid lg:grid-cols-3">
             
             <!-- Logo -->
-            <div class="shrink-0 flex items-center justify-start">
-                <a href="{{ route('dashboard') }}">
-                    <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+            <div class="flex justify-start">
+                <a href="{{ url('/') }}" class="flex items-center gap-2 font-mono text-lg text-stone-900">
+                    @include('profile.partials.morrow-mark', ['class' => 'w-7 h-7 stroke-stone-900 stroke-[6]'])
+                    <span>Morrow*</span>
                 </a>
             </div>
 
