@@ -1,7 +1,7 @@
 
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="font-semibold text-xl text-stone-800 leading-tight">
             {{ __('Edit appointment') }}
         </h2>
     </x-slot>
@@ -23,7 +23,7 @@
 
                         <div>
                             <x-input-label for="description" :value="__('Description')" />
-                            <textarea id="description" name="description" rows="3" class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" required>{{ old('description', $appointment->description) }}</textarea>
+                            <textarea id="description" name="description" rows="3" class="mt-1 block w-full border-stone-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" required>{{ old('description', $appointment->description) }}</textarea>
                             <x-input-error class="mt-2" :messages="$errors->get('description')" />
                         </div>
                         
@@ -36,13 +36,13 @@
                         <div>
                             <label for="is_highlighted" class="inline-flex items-center">
                                 <input id="is_highlighted" name="is_highlighted" type="checkbox" value="1" {{ old('is_highlighted', $appointment->is_highlighted) ? 'checked' : '' }}>
-                                <span class="ms-2 text-sm text-gray-600">{{ __('Highlight this appointment') }}</span>
+                                <span class="ms-2 text-sm text-stone-600">{{ __('Highlight this appointment') }}</span>
                             </label>
                         </div>
 
                         <div>
                             <x-input-label for="label_id" :value="__('Label')" />
-                            <select id="label_id" name="label_id" class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" required>
+                            <select id="label_id" name="label_id" class="mt-1 block w-full bg-stone-800 border-stone-600 text-stone-100 focus:border-stone-600 focus:ring-stone-600 rounded-md shadow-sm" required>
                                 @foreach ($labels as $label)
                                     <option value="{{ $label->id }}" @selected(old('label_id', $appointment->label_id) == $label->id)>
                                         {{ $label->name }}
@@ -70,7 +70,7 @@
 
                     <div class="flex items-center gap-4 mt-6">
                         <x-primary-button>{{ __('Save') }}</x-primary-button>
-                        <a href="{{ route('appointments.index') }}" class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest hover:bg-gray-50"> Cancel </a>
+                        <a href="{{ route('appointments.index') }}" class="inline-flex items-center px-4 py-2 bg-white border border-stone-300 rounded-md font-semibold text-xs text-stone-700 uppercase tracking-widest hover:bg-stone-50"> Cancel </a>
                         <x-danger-button form="delete-button" onclick="return confirm('Are you sure you want to delete this appointment?')">{{ __('Delete') }}</x-danger-button>
                     </div>
                 </form>

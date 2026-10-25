@@ -1,58 +1,266 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Morrow
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A personal calendar web application built with **Laravel** and **Laravel Breeze**. It lets each user organise appointments for the people (and things) in their life: themselves, family members, pets and the home.
 
-## About Laravel
+> **Repository:** [github.com/cscmx/calendar](https://github.com/cscmx/calendar)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Table of Contents
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+1. [About the Project](#about-the-project)
+2. [Features](#features)
+3. [Tech Stack](#tech-stack)
+4. [Requirements](#requirements)
+5. [Installation](#installation)
+6. [First Steps After Installing](#first-steps-after-installing)
+7. [Available Views](#available-views)
+8. [Data Model](#data-model)
+9. [Development Workflow](#development-workflow)
+10. [Known Limitations and Roadmap](#known-limitations-and-roadmap)
+11. [Author](#author)
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## About the Project
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Morrow gives a registered user a simple way to keep track of what is coming up. Each user manages three kinds of data:
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+- **Members**: the people or things appointments are about (yourself, a family member, a pet, the home). Each member has a category and a colour.
+- **Labels**: short names to classify appointments (for example "Medical" or "School").
+- **Appointments**: the events themselves. An appointment has one label and can involve one or several members.
 
-## Agentic Development
+The home page after logging in is a **dashboard** with a bird's-eye view of today's, this week's or all appointments.
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+---
+
+## Features
+
+- User registration, login and logout (Laravel Breeze).
+- Full CRUD for **members**, **labels** and **appointments**.
+- Appointments linked to **several members** at once (many-to-many) and to **one label**.
+- **Dashboard** with "Today", "This week" and "All" filters, ordered by date and time.
+- **Filters** on the appointments list by label, member, highlighted status and date (today, this week or all). They can be combined, and a "Clear filters" link resets them.
+- Form validation with error messages under each field.
+- Confirmation dialog before deleting a member, a label or an appointment.
+- Colour-coded members and a highlight option for important appointments.
+
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Backend | PHP, Laravel |
+| Authentication | Laravel Breeze (Blade) |
+| Database | MySQL |
+| Frontend | Blade templates, Tailwind CSS |
+| Build tool | Vite |
+| Icons | Heroicons (Blade components) |
+
+---
+
+## Requirements
+
+Make sure you have the following installed before starting:
+
+| Tool | Notes |
+|---|---|
+| **PHP** | Version 8.3 or higher (see `composer.json`) |
+| **Composer** | To install PHP dependencies |
+| **Node.js and npm** | To install and build the frontend assets (npm comes with Node.js). Developed with Node.js v26.4.0 |
+| **MySQL** | A running MySQL server (MySQL Workbench is handy for checking the data) |
+| **Git** | To clone the repository |
+
+---
+
+## Installation
+
+### 1. Clone the repository
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+git clone https://github.com/cscmx/calendar.git
+cd calendar
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+### 2. Install PHP dependencies
 
-## Contributing
+```bash
+composer install
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 3. Create the environment file
 
-## Code of Conduct
+```bash
+cp .env.example .env
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+On Windows (Command Prompt) use `copy .env.example .env`.
 
-## Security Vulnerabilities
+### 4. Generate the application key
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```bash
+php artisan key:generate
+```
 
-## License
+### 5. Create the database
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Create an empty MySQL database. The examples below use the name `calendar`, but any name works as long as it matches your `.env` file.
+
+```sql
+CREATE DATABASE calendar CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+```
+
+### 6. Configure the `.env` file
+
+The `.env.example` file is already set up for MySQL with a database called `calendar`. Open `.env` and fill in your own MySQL credentials:
+
+```env
+DB_USERNAME=your_mysql_user
+DB_PASSWORD=your_mysql_password
+```
+
+If your database has a different name, change `DB_DATABASE` as well.
+
+### 7. Run the migrations
+
+```bash
+php artisan migrate
+```
+
+This creates all the tables (users, members, labels, appointments, the appointment-member pivot table and the framework tables).
+
+### 8. Install and build the frontend assets
+
+```bash
+npm install
+```
+
+For development, keep this running in a separate terminal so style changes apply immediately:
+
+```bash
+npm run dev
+```
+
+Or, for a one-off production build:
+
+```bash
+npm run build
+```
+
+### 9. Start the application
+
+```bash
+php artisan serve
+```
+
+Open **http://localhost:8000** in your browser.
+
+> **Tip:** if the page loads without styles, make sure `npm run dev` is running (or run `npm run build` once).
+
+---
+
+## First Steps After Installing
+
+An appointment needs a label and at least one member, so create the data in this order:
+
+1. **Register** a new account from the landing page.
+2. Create at least one **member** (for example, your own "personal" member).
+3. Create at least one **label** (for example, "Medical").
+4. Create your first **appointment**, choosing a label and one or more members.
+5. Go back to the **dashboard** to see it listed.
+
+---
+
+## Available Views
+
+### Public
+
+| View | Route | Description |
+|---|---|---|
+| Landing page | `/` | Welcome page with logo, the slogan and Login / Register buttons |
+| Login | `/login` | Sign in to an existing account |
+| Register | `/register` | Create a new account |
+
+### Authenticated
+
+| Area | View | Route | Description |
+|---|---|---|---|
+| Dashboard | Dashboard | `/dashboard` | Table of appointments filtered by **Today** (default), **This week** or **All**, with the current date |
+| Members | List | `/members` | Cards with all of the user's members, each one clickable to edit |
+| Members | Create | `/members/create` | Form with name, date of birth, category and colour |
+| Members | Edit | `/members/{id}/edit` | Edit a member or delete it |
+| Labels | List | `/labels` | Cards with all labels, each one clickable to edit |
+| Labels | Create | `/labels/create` | Form with the label name (unique) |
+| Labels | Edit | `/labels/{id}/edit` | Edit a label or delete it |
+| Appointments | List | `/appointments` | Appointment cards with combinable filters by label, member, highlighted status and date (today or this week), and a "Clear filters" link |
+| Appointments | Create | `/appointments/create` | Form with title, description, start date and time, highlight option, label and members |
+| Appointments | Details | `/appointments/{id}` | Full details of an appointment, with links to edit and delete |
+| Appointments | Edit | `/appointments/{id}/edit` | Edit an appointment (fields preloaded) or delete it |
+| Profile | Profile | `/profile` | Account settings provided by Breeze |
+
+
+### Screenshots
+
+| Dashboard | Appointments list |
+|---|---|
+| ![Dashboard](docs/screenshots/dashboard.png) | ![Appointments](docs/screenshots/appointments.png) |
+
+| Create appointment | Create member |
+|---|---|
+| ![Create appointment](docs/screenshots/create-appointment.png) | ![Create member](docs/screenshots/create-member.png) |
+
+| Members | Labels |
+|---|---|
+| ![Members](docs/screenshots/members.png) | ![Labels](docs/screenshots/labels.png) |
+
+---
+
+## Data Model
+
+```
+users 1 ──── * members * ──── * appointments * ──── 1 labels
+                     (pivot: appointment_member)
+```
+
+| Table | Main fields | Notes |
+|---|---|---|
+| `users` | name, email, password | Created by Breeze. |
+| `members` | user_id, name, date_of_birth, category, color | Belongs to a user. Category is one of `personal`, `family_member`, `pet`, `home`. Date of birth is required only for family members. Colour is a hex value (`#RRGGBB`). A member cannot be deleted while appointments use it |
+| `labels` | name | Unique name. Independent of any user. A label cannot be deleted while appointments use it (an error message explains why).|
+| `appointments` | title, description, start_date_time, end_date_time, is_highlighted, status, label_id | Belongs to one label. `end_date_time` is nullable. `status` is one of `scheduled`, `completed`, `cancelled` (default `scheduled`). |
+| `appointment_member` | appointment_id, member_id | Pivot table. Composite primary key. Rows are removed in cascade when either side is deleted. |
+
+---
+
+## Development Workflow
+
+The project follows a simple **git flow**:
+
+- `dev` is the base branch and the default branch on GitHub.
+- Each feature lives in its own branch named `feature/verb-resource` (for example `feature/create-appointment`).
+- Features are merged into `dev` through pull requests.
+- `main` is left untouched until the final delivery.
+
+Commit messages follow a short convention: `feat:`, `fix:`, `refactor:` followed by a brief description.
+
+---
+
+## Known Limitations and Roadmap
+
+Honest notes on what is not finished yet:
+
+- **Data isolation between users:** every registered user can currently see all appointments in the database. Restricting each user to their own data is planned for the next sprint.
+- **Default members:** the "personal" and "home" members are not created automatically at registration; each user creates their members manually.
+- **`end_date_time` and `status`:** both columns exist in the database but are not used by the forms yet. Every appointment is saved as `scheduled`, and marking one as completed once its date has passed is pending.
+- **Overlap warning:** a warning when a new appointment overlaps another one for the same member is planned but not implemented.
+- **Member details page:** the `members.show` route, controller method and view exist but are not linked from the interface, since the members list already shows the same information. They are kept for a possible use in a future sprint.
+
+---
+
+## Author
+
+**CAROLINA SAINZ**
+
+- Repository: [github.com/cscmx/calendar](https://github.com/cscmx/calendar)
+- Contact: https://www.linkedin.com/in/carolinasainz/

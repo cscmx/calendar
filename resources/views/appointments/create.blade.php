@@ -21,7 +21,7 @@
 
                         <div>
                             <x-input-label for="description" :value="__('description')" />
-                            <textarea id="description" name="description" class="mt-1 block w-full border-stone-300 focus:border-lime-500 focus:ring-lime-500 rounded-md shadow-sm" rows="3" required>{{ old('description') }}</textarea>
+                            <textarea id="description" name="description" class="mt-1 block w-full border-stone-300 focus:border-stone-500 focus:ring-stone-500 rounded-md shadow-sm" rows="3" required>{{ old('description') }}</textarea>
                             <x-input-error class="mt-2" :messages="$errors->get('description')" />
                         </div>
                         

@@ -9,17 +9,11 @@ use Carbon\Carbon;
 
 class MemberController extends Controller
 {
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('members.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $validatedData = $request->validate([
@@ -37,28 +31,19 @@ class MemberController extends Controller
                
     }
 
-    /**
-     * View all members.
-     */
     public function index(Request $request)
     {
         $user = $request->user();
-        $members = $user->members; //me da la colección completa de members
+        $members = $user->members;
 
         return view('members.list', compact('members'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Member $member)
     {
         return view('members.edit',compact('member'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Member $member)
     {
         $member->update($request->validate([
@@ -72,17 +57,11 @@ class MemberController extends Controller
                 ->route('members.index');
     }
     
-    /**
-     * View only one member.
-     */
     public function show(Member $member)
     {
         return view('members.show', compact('member'));
     }
 
-    /**
-     *  Remove the specified resource from storage.
-    */
     public function destroy(Member $member)
     {
         $count = $member->appointments()->count();

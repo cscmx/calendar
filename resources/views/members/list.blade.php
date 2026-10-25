@@ -60,7 +60,7 @@
                                     </td>
 
                                     <td class="px-4 py-3">
-                                        <a href="{{ route('members.edit', $member) }}" class="font-medium text-stone-800 hover:text-indigo-600">
+                                        <a href="{{ route('members.edit', $member) }}" class="font-medium text-stone-800 hover:text-lime-600">
                                             {{ $member->name }}
                                         </a>
                                     </td>
