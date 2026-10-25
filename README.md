@@ -240,7 +240,7 @@ The project follows a simple **git flow**:
 - `dev` is the base branch and the default branch on GitHub.
 - Each feature lives in its own branch named `feature/verb-resource` (for example `feature/create-appointment`).
 - Features are merged into `dev` through pull requests.
-- `main` is left untouched until the final delivery.
+- `main` is left untouched for now. The project is delivered on `dev`, the default branch. It will be merged into `main` after review.
 
 Commit messages follow a short convention: `feat:`, `fix:`, `refactor:` followed by a brief description.
 
