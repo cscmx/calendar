@@ -54,6 +54,12 @@ class AppointmentController extends Controller
             {
                 $query->where('label_id', $request->label);
             }
+
+        if ($request->is_highlighted)
+            {
+                $query->where('is_highlighted', $request->is_highlighted);
+            }
+
         if ($request->filter === 'today')
             {
                 $query->whereDate('start_date_time', today());
