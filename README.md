@@ -245,7 +245,23 @@ The project follows a simple **git flow**:
 Commit messages follow a short convention: `feat:`, `fix:`, `refactor:` followed by a brief description.
 
 ---
+## 🌱 Seeders
 
+The project includes `UserSeeder`, which creates the initial user:
+
+| Field    | Value              |
+|----------|--------------------|
+| Email    | `eleanor@mail.com` |
+| Password | `12345678`         |
+
+It uses `firstOrCreate`, so it's **idempotent** (running it multiple times won't duplicate the user).
+
+```bash
+php artisan db:seed                        # all seeders
+php artisan db:seed --class=UserSeeder     # only this one
+php artisan migrate:fresh --seed           # recreate + seed (recommended in dev)
+
+---
 ## Known Limitations and Roadmap
 
 Honest notes on what is not finished yet:
